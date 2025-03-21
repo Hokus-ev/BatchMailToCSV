@@ -15,20 +15,23 @@ def parse_email_parameter(input_str):
     str_buffer = input_str.split("@",1)[0]
     return str_buffer
 
-def filter_whitespace_cleaner(TextForFilter):
+def filter_cleanup_Double_whitespaces(TextForFilter):
     cleanedText = TextForFilter
     while "  " in cleanedText:
         cleanedText = cleanedText.replace('  ', ' ')
     return str(cleanedText)
 
-def filter_Replace_EOL_AND_TAB(TextForFilter):
+def filter_Replace_EOL_AND_TABS(TextForFilter):
     cleanedText = TextForFilter
-    return str(cleanedText.replace('\r', '').replace('\n', '').replace('\t', ''))
+    cleanedText = cleanedText.replace('\r', '') # filter return operator
+    cleanedText = cleanedText.replace('\n', '') # filter newline operator
+    cleanedText = cleanedText.replace('\t', '') # filter tab operator
+    return str(cleanedText)
 
 def filter_text(TextForFilter):
     cleanedText = TextForFilter
-    cleanedText = filter_whitespace_cleaner(cleanedText)
-    cleanedText = filter_Replace_EOL_AND_TAB(cleanedText)
+    cleanedText = filter_cleanup_Double_whitespaces(cleanedText)
+    cleanedText = filter_Replace_EOL_AND_TABS(cleanedText)
     #add more filters if you feel it's necessary
     return str(cleanedText)
 
